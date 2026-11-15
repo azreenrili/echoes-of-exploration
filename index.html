@@ -1,790 +1,216 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#070b16">
-<title>Echoes of Exploration | Team Evenstar</title>
-<meta name="description" content="Giving Voice to Humanity's Silent Space Explorers. Discover the stories of Apollo's Lunar Rover, Opportunity and Ingenuity.">
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-
-:root {
-  --bg: #070b16;
-  --panel: #101a2b;
-  --blue: #62c8ff;
-  --cyan: #9be8ff;
-  --muted: #9baac0;
-  --white: #f4f8ff;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--white);
-  font-family: 'DM Sans', sans-serif;
-  overflow-x: hidden;
-}
-
-a { color: inherit; text-decoration: none; }
-
-button { font: inherit; cursor: pointer; }
-
-#stars {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(1px 1px at 10% 20%, #fff 99%, transparent),
-    radial-gradient(1px 1px at 70% 30%, #8ddcff 99%, transparent),
-    radial-gradient(2px 2px at 40% 80%, #fff 99%, transparent),
-    radial-gradient(1px 1px at 85% 75%, #fff 99%, transparent),
-    radial-gradient(1px 1px at 20% 65%, #a5dfff 99%, transparent),
-    radial-gradient(1px 1px at 55% 12%, #fff 99%, transparent);
-  background-size: 260px 260px;
-  opacity: .65;
-  animation: drift 90s linear infinite;
-}
-
-@keyframes drift {
-  from { transform: translateY(0); }
-  to { transform: translateY(-260px); }
-}
-
-nav {
-  position: fixed;
-  z-index: 20;
-  top: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 7%;
-  background: rgba(7,11,22,.82);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(255,255,255,.07);
-}
-
-.logo {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  letter-spacing: 1px;
-  font-size: 17px;
-}
-
-.logo span { color: var(--blue); }
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-
-.nav-links a {
-  color: var(--muted);
-  font-size: 13px;
-  transition: .2s;
-}
-
-.nav-links a:hover { color: var(--blue); }
-
-.menu-btn {
-  display: none;
-  color: white;
-  background: none;
-  border: 0;
-  font-size: 26px;
-}
-
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 140px 9% 90px;
-  position: relative;
-  background:
-    linear-gradient(90deg, rgba(7,11,22,.97) 5%, rgba(7,11,22,.75) 60%, rgba(7,11,22,.3)),
-    linear-gradient(0deg, var(--bg), transparent 45%),
-    url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=85') center/cover;
-}
-
-.hero-content { max-width: 760px; }
-
-.eyebrow {
-  color: var(--blue);
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 11px;
-  font-weight: 700;
-  margin-bottom: 25px;
-}
-
-.hero h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(48px, 7.5vw, 92px);
-  line-height: 1.04;
-  letter-spacing: -4px;
-  margin-bottom: 25px;
-}
-
-.hero h1 span {
-  color: var(--blue);
-  text-shadow: 0 0 35px rgba(98,200,255,.3);
-}
-
-.hero p {
-  color: #bac7d8;
-  max-width: 580px;
-  font-size: 16px;
-  line-height: 1.9;
-}
-
-.actions {
-  display: flex;
-  gap: 15px;
-  margin-top: 35px;
-  flex-wrap: wrap;
-}
-
-.btn {
-  padding: 14px 24px;
-  border-radius: 5px;
-  font-size: 13px;
-  font-weight: 700;
-  transition: .25s;
-  display: inline-block;
-}
-
-.btn-primary {
-  background: var(--blue);
-  color: #06101e;
-}
-
-.btn-primary:hover {
-  box-shadow: 0 0 30px rgba(98,200,255,.4);
-  transform: translateY(-3px);
-}
-
-.btn-outline {
-  border: 1px solid rgba(255,255,255,.3);
-  color: white;
-}
-
-.btn-outline:hover { border-color: var(--blue); color: var(--blue); }
-
-.scroll-note {
-  position: absolute;
-  bottom: 35px;
-  left: 9%;
-  color: var(--muted);
-  font-size: 10px;
-  letter-spacing: 3px;
-}
-
-section { padding: 105px 9%; scroll-margin-top: 75px; }
-
-.section-label {
-  color: var(--blue);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  margin-bottom: 15px;
-}
-
-.section-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(32px, 4vw, 48px);
-  margin-bottom: 17px;
-  letter-spacing: -1.5px;
-}
-
-.section-intro {
-  color: var(--muted);
-  max-width: 650px;
-  line-height: 1.8;
-  font-size: 14px;
-}
-
-.intro {
-  background: linear-gradient(180deg, #0a1221, #070b16);
-}
-
-.intro-grid {
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 65px;
-  align-items: center;
-}
-
-.quote {
-  padding: 35px;
-  border-left: 2px solid var(--blue);
-  background: rgba(98,200,255,.045);
-  color: #c6d8ec;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 21px;
-  line-height: 1.6;
-}
-
-.quote small {
-  display: block;
-  font-family: 'DM Sans', sans-serif;
-  color: var(--blue);
-  font-size: 11px;
-  margin-top: 20px;
-  letter-spacing: 2px;
-}
-
-.gallery { background: #080e1b; }
-
-.gallery-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 25px;
-  margin-bottom: 45px;
-}
-
-.filter {
-  background: transparent;
-  color: var(--muted);
-  border: 1px solid #27374b;
-  padding: 9px 16px;
-  border-radius: 30px;
-  font-size: 11px;
-}
-
-.filter.active, .filter:hover {
-  background: var(--blue);
-  color: #06101e;
-  border-color: var(--blue);
-}
-
-.filters { display: flex; gap: 8px; flex-wrap: wrap; }
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 23px;
-}
-
-.card {
-  background: #101a2a;
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 9px;
-  overflow: hidden;
-  transition: .3s;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(98,200,255,.5);
-  box-shadow: 0 15px 45px rgba(0,0,0,.35);
-}
-
-.card-visual {
-  height: 235px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 75px;
-  position: relative;
-  overflow: hidden;
-}
-
-.card-visual::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, #101a2a, transparent 65%);
-}
-
-.moon { background: radial-gradient(circle at 65% 30%, #9aabb9, #333d4b 35%, #111b2d 75%); }
-.mars { background: radial-gradient(circle at 55% 35%, #c47b52, #683c35 42%, #171a28 80%); }
-.flight { background: radial-gradient(circle at 55% 35%, #8b705d, #493b37 42%, #121b2a 80%); }
-
-.card-visual span { position: relative; z-index: 2; filter: drop-shadow(0 8px 12px #000); }
-
-.card-body { padding: 25px; }
-
-.tag {
-  font-size: 9px;
-  color: var(--blue);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 13px;
-}
-
-.card h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 22px;
-  margin-bottom: 12px;
-}
-
-.card p {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.8;
-  min-height: 70px;
-}
-
-.card button {
-  background: none;
-  border: 0;
-  color: var(--blue);
-  margin-top: 22px;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 15px;
-  margin-top: 45px;
-}
-
-.stat {
-  border-top: 1px solid #26364a;
-  padding-top: 20px;
-}
-
-.stat strong {
-  display: block;
-  color: var(--blue);
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 30px;
-}
-
-.stat span { color: var(--muted); font-size: 11px; }
-
-.timeline { background: #0b1322; }
-
-.timeline-list {
-  margin-top: 50px;
-  border-left: 1px solid #36536e;
-  padding-left: 30px;
-  max-width: 800px;
-}
-
-.event {
-  position: relative;
-  padding: 0 0 40px;
-}
-
-.event::before {
-  content: "";
-  position: absolute;
-  left: -36px;
-  top: 5px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--blue);
-  box-shadow: 0 0 15px var(--blue);
-}
-
-.event time { color: var(--blue); font-size: 12px; letter-spacing: 2px; }
-
-.event h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px;
-  margin: 8px 0;
-}
-
-.event p { color: var(--muted); font-size: 13px; line-height: 1.8; }
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  margin-top: 35px;
-}
-
-.about-box {
-  background: #101a2a;
-  padding: 30px;
-  border: 1px solid #23364c;
-  border-radius: 8px;
-}
-
-.about-box h3 {
-  color: var(--blue);
-  font-family: 'Space Grotesk', sans-serif;
-  margin-bottom: 15px;
-}
-
-.about-box p, .about-box li {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.9;
-}
-
-.about-box ul { padding-left: 18px; }
-
-.sources a {
-  display: block;
-  color: var(--blue);
-  font-size: 12px;
-  margin: 13px 0;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-footer {
-  padding: 35px 9%;
-  border-top: 1px solid #243144;
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-  color: var(--muted);
-  font-size: 11px;
-}
-
-footer strong { color: var(--blue); }
-
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 50;
-  inset: 0;
-  background: rgba(0,0,0,.82);
-  backdrop-filter: blur(9px);
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.modal.show { display: flex; }
-
-.modal-content {
-  width: 100%;
-  max-width: 650px;
-  max-height: 85vh;
-  overflow-y: auto;
-  background: #101b2d;
-  border: 1px solid #34516b;
-  border-radius: 10px;
-  padding: 35px;
-  position: relative;
-}
-
-.modal-content h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 30px;
-  margin-bottom: 15px;
-}
-
-.modal-content p { color: var(--muted); line-height: 1.9; font-size: 14px; }
-
-.close {
-  position: absolute;
-  right: 20px;
-  top: 15px;
-  border: 0;
-  background: none;
-  color: white;
-  font-size: 27px;
-}
-
-@media(max-width:850px) {
-  .cards { grid-template-columns: 1fr 1fr; }
-  .intro-grid, .about-grid { grid-template-columns: 1fr; }
-}
-
-@media(max-width:600px) {
-  nav { padding: 17px 6%; }
-  .menu-btn { display: block; }
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 65px;
-    left: 0;
-    width: 100%;
-    padding: 25px;
-    background: #0c1423;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .nav-links.open { display: flex; }
-  .hero { padding: 130px 7% 100px; min-height: 90vh; }
-  .hero h1 { letter-spacing: -2px; }
-  section { padding: 75px 7%; }
-  .cards { grid-template-columns: 1fr; }
-  .gallery-head { align-items: flex-start; flex-direction: column; }
-  .stats { grid-template-columns: 1fr; }
-  footer { padding: 30px 7%; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070b14">
+  <meta name="description" content="Echoes of Exploration is an interactive digital archive tracing the journeys and lasting legacies of robotic explorers across the Moon, Mars and deep space.">
+  <title>Echoes of Exploration — An Interactive Space Archive</title>
+  <style>
+    :root{--bg:#070b14;--panel:#101827;--panel2:#141f31;--line:rgba(190,210,255,.13);--text:#f3f6ff;--muted:#a7b4ca;--blue:#75b8ff;--cyan:#8be6ef;--gold:#f2c879;--max:1180px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}button,input,select{font:inherit}button{cursor:pointer}.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;z-index:99;background:#fff;color:#000;padding:10px}
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(7,11,20,.86);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.nav{max-width:var(--max);margin:auto;padding:13px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:11px;color:var(--text);font-weight:800;letter-spacing:.04em}.brand-mark{width:34px;height:34px;border:1px solid #6ba9ec;border-radius:50%;display:grid;place-items:center;color:var(--cyan);font-size:18px}.navlinks{display:flex;align-items:center;gap:22px}.navlinks a{font-size:.9rem;color:var(--muted)}.navlinks a:hover{color:#fff}.nav-cta{border:1px solid rgba(117,184,255,.4);border-radius:999px;padding:8px 14px;color:#d8ebff!important}.menu-btn{display:none;background:none;border:1px solid var(--line);color:#fff;border-radius:9px;padding:7px 10px}
+    .hero{position:relative;min-height:610px;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 75% 30%,rgba(43,103,168,.35),transparent 42%),radial-gradient(ellipse at 18% 80%,rgba(68,48,113,.24),transparent 38%),linear-gradient(135deg,#080d19,#0a1425 60%,#080c16)}.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;pointer-events:none}.hero:before{width:520px;height:520px;right:5%;top:7%;background:radial-gradient(circle at 35% 32%,#d5d9df 0 2%,#7e8b9f 12%,#36445b 42%,#111a2a 67%,transparent 69%);box-shadow:0 0 100px rgba(90,156,224,.18)}.hero:after{width:2px;height:2px;left:0;top:0;box-shadow:8vw 12vh #fff,16vw 30vh #8fc8ff,27vw 16vh #fff,34vw 72vh #fff,48vw 18vh #8fc8ff,60vw 80vh #fff,70vw 10vh #fff,83vw 62vh #fff,92vw 25vh #8fc8ff,95vw 83vh #fff,12vw 85vh #fff,42vw 48vh #fff,55vw 34vh #fff,76vw 42vh #fff}.hero-inner{position:relative;z-index:1;max-width:var(--max);width:100%;margin:auto;padding:100px 22px 110px}.eyebrow{color:var(--cyan);font-size:.76rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase}.hero h1{max-width:700px;margin:18px 0 16px;font-size:clamp(2.8rem,7vw,5.8rem);line-height:.98;letter-spacing:-.055em}.hero h1 span{color:var(--blue)}.hero p{max-width:600px;color:#c3cee0;font-size:1.1rem}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(117,184,255,.55);background:#6daeea;color:#07101d;padding:11px 18px;border-radius:999px;font-weight:800}.btn.secondary{background:rgba(255,255,255,.04);color:#eaf3ff;border-color:var(--line)}.hero-note{margin-top:32px;color:#93a5bd;font-size:.82rem}
+    .stats{max-width:var(--max);margin:-42px auto 0;padding:0 22px;position:relative;z-index:3;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{background:rgba(16,24,39,.94);border:1px solid var(--line);border-radius:16px;padding:20px}.stat strong{display:block;font-size:1.8rem;color:var(--cyan);line-height:1.2}.stat span{font-size:.82rem;color:var(--muted)}
+    main{max-width:var(--max);margin:auto;padding:0 22px}.section{padding:90px 0 18px;scroll-margin-top:80px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:28px}.section-kicker{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);font-weight:800}.section h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.04em;margin:7px 0}.section-intro{max-width:650px;color:var(--muted);margin:0}.collection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.collection{position:relative;min-height:250px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:linear-gradient(145deg,#17263b,#0c1422);padding:25px;display:flex;flex-direction:column;justify-content:end}.collection:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 75% 25%,rgba(113,180,241,.25),transparent 40%),linear-gradient(0deg,rgba(4,8,15,.95),transparent 75%)}.collection.mars:before{background:radial-gradient(circle at 70% 25%,rgba(222,123,77,.38),transparent 40%),linear-gradient(0deg,rgba(4,8,15,.95),transparent 75%)}.collection.deep:before{background:radial-gradient(circle at 70% 25%,rgba(154,120,223,.32),transparent 40%),linear-gradient(0deg,rgba(4,8,15,.95),transparent 75%)}.collection>*{position:relative}.collection .number{font-size:.76rem;color:var(--cyan);letter-spacing:.15em}.collection h3{font-size:1.65rem;margin:8px 0 4px}.collection p{color:#c0ccdd;margin:0;font-size:.92rem}.collection a{margin-top:14px;font-weight:800}
+    .toolbar{display:grid;grid-template-columns:1.5fr .8fr .8fr;gap:10px;margin:25px 0 18px}.field{width:100%;background:#0e1726;color:#eef5ff;border:1px solid var(--line);border-radius:11px;padding:12px 14px;outline:none}.field:focus{border-color:#75b8ff;box-shadow:0 0 0 3px rgba(117,184,255,.12)}.result-count{color:var(--muted);font-size:.84rem;margin:0 0 14px}.mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.mission-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}.mission-card:hover{transform:translateY(-4px);border-color:rgba(117,184,255,.5)}.mission-image{height:190px;background:linear-gradient(135deg,#1c3049,#0d1524);position:relative;overflow:hidden}.mission-image img{width:100%;height:100%;object-fit:cover;display:block}.image-credit{position:absolute;right:9px;bottom:8px;background:rgba(4,8,15,.72);padding:3px 7px;border-radius:5px;color:#dce8f8;font-size:.65rem}.mission-body{padding:18px;display:flex;flex-direction:column;flex:1}.tagrow{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px}.tag{font-size:.68rem;color:var(--cyan);background:rgba(139,230,239,.09);border:1px solid rgba(139,230,239,.18);padding:3px 8px;border-radius:99px}.tag.status{color:#f4d28e;background:rgba(242,200,121,.08);border-color:rgba(242,200,121,.2)}.mission-body h3{margin:0 0 7px;font-size:1.2rem}.mission-body p{color:var(--muted);font-size:.88rem;margin:0 0 14px}.facts{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:auto;padding-top:12px;border-top:1px solid var(--line)}.fact small{display:block;color:#8192aa;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em}.fact span{font-size:.81rem;color:#e3ebf8}.details-btn{margin-top:15px;width:100%;padding:9px;border-radius:9px;border:1px solid rgba(117,184,255,.35);background:rgba(117,184,255,.08);color:#d9edff;font-weight:700}
+    .timeline{position:relative;margin:34px 0 0;padding-left:27px}.timeline:before{content:"";position:absolute;left:7px;top:4px;bottom:8px;width:2px;background:linear-gradient(var(--blue),rgba(117,184,255,.05))}.time-item{position:relative;padding:0 0 24px 18px}.time-item:before{content:"";position:absolute;left:-25px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 5px rgba(139,230,239,.1)}.time-item strong{color:var(--gold);font-size:.83rem}.time-item h3{margin:3px 0;font-size:1.04rem}.time-item p{margin:0;color:var(--muted);font-size:.88rem}
+    .feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.feature{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:22px}.feature h3{margin:0 0 8px}.feature p{margin:0;color:var(--muted);font-size:.91rem}.source-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.source{border:1px solid var(--line);border-radius:12px;padding:15px;background:var(--panel)}.source strong{display:block;margin-bottom:4px}.source span{display:block;color:var(--muted);font-size:.83rem;margin-bottom:8px}
+    footer{margin-top:90px;border-top:1px solid var(--line);background:#060a12}.footer-inner{max-width:var(--max);margin:auto;padding:35px 22px 45px;display:grid;grid-template-columns:1.3fr 1fr;gap:30px}.footer-inner p{color:var(--muted);font-size:.87rem}.footer-links{display:flex;gap:12px;flex-wrap:wrap;align-content:start}.footer-links a{font-size:.85rem}
+    .modal{position:fixed;inset:0;z-index:60;background:rgba(1,4,10,.82);display:none;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}.modal-panel{width:min(760px,100%);max-height:90vh;overflow:auto;background:#101a2a;border:1px solid rgba(150,190,240,.25);border-radius:18px;box-shadow:0 25px 90px #000}.modal-top{display:flex;justify-content:space-between;align-items:center;padding:17px 20px;border-bottom:1px solid var(--line)}.modal-top h2{font-size:1.35rem;margin:0}.close{border:1px solid var(--line);background:transparent;color:#fff;border-radius:8px;padding:6px 10px}.modal-content{padding:20px}.modal-content p{color:#c1cde0}.modal-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0}.modal-meta div{background:#0b1320;border:1px solid var(--line);padding:11px;border-radius:9px}.modal-meta small{display:block;color:#91a4bd}.modal-meta strong{font-size:.9rem}.modal-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px}.modal-links a{font-weight:700}
+    .notice{border-left:3px solid var(--gold);background:rgba(242,200,121,.07);padding:13px 16px;color:#d6ddeb;font-size:.86rem;border-radius:0 9px 9px 0;margin-top:20px}
+    @media(max-width:850px){.navlinks{display:none;position:absolute;left:0;right:0;top:60px;background:#0a1220;border-bottom:1px solid var(--line);padding:18px 22px;flex-direction:column;align-items:flex-start}.navlinks.open{display:flex}.menu-btn{display:block}.stats{grid-template-columns:repeat(2,1fr)}.collection-grid,.mission-grid{grid-template-columns:repeat(2,1fr)}.hero:before{right:-180px;opacity:.65}.toolbar{grid-template-columns:1fr 1fr}.toolbar input{grid-column:1/-1}}
+    @media(max-width:560px){.hero{min-height:560px}.hero-inner{padding-top:75px}.hero:before{width:350px;height:350px;top:9%;right:-190px}.stats{margin-top:-28px;gap:8px}.stat{padding:14px}.stat strong{font-size:1.45rem}.collection-grid,.mission-grid,.feature-grid,.source-list{grid-template-columns:1fr}.collection{min-height:205px}.section{padding-top:65px}.section-head{display:block}.toolbar{grid-template-columns:1fr}.toolbar input{grid-column:auto}.footer-inner{grid-template-columns:1fr}.modal-meta{grid-template-columns:1fr 1fr}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+  </style>
 </head>
-
 <body>
-<div id="stars"></div>
-
-<nav>
-  <a class="logo" href="#home">EVENSTAR<span> / </span>EXPLORATION</a>
-  <button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
-  <div class="nav-links" id="navLinks">
-    <a href="#home">HOME</a>
-    <a href="#about-project">OUR MISSION</a>
-    <a href="#explorers">EXPLORERS</a>
-    <a href="#timeline">TIMELINE</a>
-    <a href="#about">ABOUT</a>
-  </div>
-</nav>
-
-<header class="hero" id="home">
-  <div class="hero-content">
-    <div class="eyebrow">A digital archive by Team Evenstar</div>
-    <h1>Echoes of<br><span>Exploration.</span></h1>
-    <p>
-      They travelled beyond our world. They explored the unknown.
-      Their missions may have ended, but their discoveries continue
-      to inspire humanity.
-    </p>
-    <div class="actions">
-      <a href="#explorers" class="btn btn-primary">EXPLORE THE ARCHIVE ↗</a>
-      <a href="#about-project" class="btn btn-outline">OUR PURPOSE</a>
-    </div>
-  </div>
-  <div class="scroll-note">SCROLL TO DISCOVER ↓</div>
-</header>
-
-<section class="intro" id="about-project">
-  <div class="intro-grid">
-    <div>
-      <div class="section-label">01 / The mission</div>
-      <h2 class="section-title">Beyond the final signal.</h2>
-      <p class="section-intro">
-        Across the Moon and Mars, robotic explorers have expanded
-        our understanding of worlds beyond Earth. Some completed
-        their journeys after years of discovery. Others changed
-        what we believe is possible.
-        <br><br>
-        Echoes of Exploration is an interactive digital archive
-        dedicated to remembering these remarkable machines and
-        the knowledge they left behind.
-      </p>
-    </div>
-    <div class="quote">
-      "Every journey leaves a trace.
-      Every discovery becomes part of our story."
-      <small>THE EVENSTAR VISION</small>
-    </div>
-  </div>
-</section>
-
-<section class="gallery" id="explorers">
-  <div class="gallery-head">
-    <div>
-      <div class="section-label">02 / The archive</div>
-      <h2 class="section-title">Meet the explorers.</h2>
-      <p class="section-intro">Three machines. Three extraordinary journeys. One shared legacy.</p>
-    </div>
-    <div class="filters">
-      <button class="filter active" data-filter="all">ALL</button>
-      <button class="filter" data-filter="moon">MOON</button>
-      <button class="filter" data-filter="mars">MARS</button>
-    </div>
-  </div>
-
-  <div class="cards">
-    <article class="card" data-world="moon">
-      <div class="card-visual moon"><span>🌕</span></div>
-      <div class="card-body">
-        <div class="tag">MOON / 1971</div>
-        <h3>Apollo Lunar Rover</h3>
-        <p>The electric vehicle that transformed lunar exploration and helped astronauts travel farther across the Moon.</p>
-        <button onclick="openModal('apollo')">DISCOVER ITS STORY ↗</button>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="topbar">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#home"><span class="brand-mark">✦</span><span>EVENSTAR <span style="color:#8be6ef">/</span> ECHOES</span></a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <div class="navlinks" id="navLinks">
+        <a href="#collections">Collections</a><a href="#archive">Mission archive</a><a href="#timeline">Timeline</a><a href="#discoveries">Discoveries</a><a href="#sources">NASA sources</a>
+        <a class="nav-cta" href="#archive">Explore the archive ↗</a>
       </div>
-    </article>
+    </nav>
+  </header>
 
-    <article class="card" data-world="mars">
-      <div class="card-visual mars"><span>🔴</span></div>
-      <div class="card-body">
-        <div class="tag">MARS / 2004–2018</div>
-        <h3>Opportunity Rover</h3>
-        <p>A resilient robotic geologist that far exceeded its planned mission and uncovered evidence of ancient water on Mars.</p>
-        <button onclick="openModal('opportunity')">DISCOVER ITS STORY ↗</button>
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div class="eyebrow">An interactive digital archive · Team Evenstar</div>
+      <h1>Echoes of<br><span>Exploration.</span></h1>
+      <p>Across the Moon, Mars and deep space, robotic explorers have transformed our understanding of the Solar System. Their missions may have ended, but their discoveries—and the traces they left behind—remain.</p>
+      <div class="actions"><a class="btn" href="#archive">Explore the missions <span aria-hidden="true">→</span></a><a class="btn secondary" href="#timeline">Travel through time</a></div>
+      <div class="hero-note">A learning archive built from public NASA mission records and image resources.</div>
+    </div>
+  </section>
+
+  <div class="stats" aria-label="Archive at a glance">
+    <div class="stat"><strong>17</strong><span>Mission records and explorer entries</span></div>
+    <div class="stat"><strong>3</strong><span>Exploration collections</span></div>
+    <div class="stat"><strong>1966–2018</strong><span>Launch era represented</span></div>
+    <div class="stat"><strong>NASA</strong><span>Primary reference collection</span></div>
+  </div>
+
+  <main id="main">
+    <section class="section" id="collections">
+      <div class="section-head"><div><div class="section-kicker">The archive</div><h2>Three frontiers. One shared legacy.</h2><p class="section-intro">Explore the places where machines have carried our curiosity farther than ever before.</p></div></div>
+      <div class="collection-grid">
+        <article class="collection moon"><div class="number">COLLECTION 01</div><h3>The Moon</h3><p>Landing craft, electric rovers and scientific instruments left on the lunar surface.</p><a href="#archive" data-filter-link="Moon">Explore lunar records →</a></article>
+        <article class="collection mars"><div class="number">COLLECTION 02</div><h3>Mars</h3><p>Historic landers, pioneering rovers and the first aircraft to fly on another world.</p><a href="#archive" data-filter-link="Mars">Explore Mars records →</a></article>
+        <article class="collection deep"><div class="number">COLLECTION 03</div><h3>Beyond the planets</h3><p>Asteroid explorers, outer-planet pioneers and a telescope that changed our view of the galaxy.</p><a href="#archive" data-filter-link="Deep Space">Explore deep-space records →</a></article>
       </div>
-    </article>
+    </section>
 
-    <article class="card" data-world="mars">
-      <div class="card-visual flight"><span>🚁</span></div>
-      <div class="card-body">
-        <div class="tag">MARS / 2021–2024</div>
-        <h3>Ingenuity Helicopter</h3>
-        <p>The first aircraft to achieve powered, controlled flight on another planet, opening a new chapter in exploration.</p>
-        <button onclick="openModal('ingenuity')">DISCOVER ITS STORY ↗</button>
+    <section class="section" id="archive">
+      <div class="section-head"><div><div class="section-kicker">Mission directory</div><h2>Meet the explorers</h2><p class="section-intro">Search the archive or filter by destination and mission type. Select any record to read its story, key dates and final status.</p></div></div>
+      <div class="toolbar">
+        <input class="field" id="searchInput" type="search" placeholder="Search missions, discoveries or destinations…" aria-label="Search missions">
+        <select class="field" id="destinationFilter" aria-label="Filter by destination"><option value="all">All destinations</option><option>Moon</option><option>Mars</option><option>Deep Space</option><option>Asteroid</option></select>
+        <select class="field" id="typeFilter" aria-label="Filter by mission type"><option value="all">All mission types</option><option>Rover</option><option>Lander</option><option>Spacecraft</option><option>Instrument</option><option>Aircraft</option><option>Space telescope</option></select>
       </div>
-    </article>
+      <p class="result-count" id="resultCount" aria-live="polite">Showing all mission records</p>
+      <div class="mission-grid" id="missionGrid"></div>
+      <div class="notice"><strong>Reading the status:</strong> “Mission ended” describes the end of planned operations or communications. It does not mean the hardware disappeared. Some objects remain on a planetary surface or in orbit; others continue on trajectories through space. Exact locations and end dates are given only where supported by the cited mission records.</div>
+    </section>
+
+    <section class="section" id="timeline">
+      <div class="section-head"><div><div class="section-kicker">A history of discovery</div><h2>Milestones across the Solar System</h2><p class="section-intro">A selection of turning points represented in this archive, from the first successful lunar soft landings to powered flight on Mars.</p></div></div>
+      <div class="timeline">
+        <div class="time-item"><strong>1959</strong><h3>Luna 2 reaches the Moon</h3><p>The first human-made object to reach the lunar surface. This archive focuses on later NASA missions and artifacts.</p></div>
+        <div class="time-item"><strong>1966–1967</strong><h3>Surveyor demonstrates lunar soft landing</h3><p>NASA’s Surveyor program returned close-up images and surface measurements that helped prepare for Apollo.</p></div>
+        <div class="time-item"><strong>1969–1972</strong><h3>Apollo leaves a scientific footprint</h3><p>Apollo crews deploy experiments, use lunar rovers and leave descent stages and equipment at landing sites.</p></div>
+        <div class="time-item"><strong>1976</strong><h3>Viking lands on Mars</h3><p>Viking 1 and Viking 2 become the first U.S. missions to operate successfully on the Martian surface.</p></div>
+        <div class="time-item"><strong>1997</strong><h3>Sojourner explores Mars</h3><p>The small rover demonstrates mobile robotic exploration on another planet.</p></div>
+        <div class="time-item"><strong>2004</strong><h3>Spirit and Opportunity begin exploring</h3><p>The twin rovers find extensive evidence of past water activity on Mars.</p></div>
+        <div class="time-item"><strong>2011–2015</strong><h3>Dawn explores Vesta and Ceres</h3><p>One spacecraft visits two major bodies in the asteroid belt, using ion propulsion.</p></div>
+        <div class="time-item"><strong>2021–2024</strong><h3>Ingenuity proves powered flight on Mars</h3><p>The technology demonstrator completes 72 flights before rotor damage ends its flight operations.</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="discoveries">
+      <div class="section-head"><div><div class="section-kicker">Why these missions matter</div><h2>Discoveries that outlast a mission</h2><p class="section-intro">The archive is about more than where spacecraft ended up. It is about what they taught us.</p></div></div>
+      <div class="feature-grid">
+        <article class="feature"><h3>Evidence of ancient water</h3><p>Spirit and Opportunity found geological evidence that liquid water once altered rocks on Mars. Their findings reshaped the search for habitable environments.</p></article>
+        <article class="feature"><h3>Worlds beyond the familiar</h3><p>Dawn revealed Vesta and Ceres in unprecedented detail, helping scientists understand the early Solar System and the diversity of small worlds.</p></article>
+        <article class="feature"><h3>Technology that opens new paths</h3><p>Sojourner demonstrated planetary mobility, while Ingenuity showed that powered, controlled flight is possible in the thin atmosphere of Mars.</p></article>
+        <article class="feature"><h3>Listening to distant worlds</h3><p>ALSEP instruments continued collecting lunar science after astronauts departed. InSight later used seismic measurements to study the interior of Mars.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="sources">
+      <div class="section-head"><div><div class="section-kicker">Research & attribution</div><h2>Follow the original records</h2><p class="section-intro">This project is an educational synthesis. Use the linked NASA records for authoritative mission details, dates, images and technical documentation.</p></div></div>
+      <div class="source-list">
+        <div class="source"><strong>NASA Space Science Data Coordinated Archive</strong><span>Spacecraft catalogue, mission parameters and archival records.</span><a href="https://nssdc.gsfc.nasa.gov/" target="_blank" rel="noopener">Visit NSSDCA ↗</a></div>
+        <div class="source"><strong>NASA Science — Missions</strong><span>Mission overviews, objectives, discoveries and mission histories.</span><a href="https://science.nasa.gov/missions/" target="_blank" rel="noopener">Explore NASA missions ↗</a></div>
+        <div class="source"><strong>NASA Image and Video Library</strong><span>Searchable photographs, videos and media assets. Mission cards retrieve illustrative results from this public library.</span><a href="https://images.nasa.gov/" target="_blank" rel="noopener">Visit NASA Images ↗</a></div>
+        <div class="source"><strong>NASA Open APIs</strong><span>Developer documentation for accessing NASA data and media services.</span><a href="https://api.nasa.gov/" target="_blank" rel="noopener">Explore NASA APIs ↗</a></div>
+      </div>
+      <div class="notice">NASA imagery is generally available for educational and informational use under NASA’s media guidelines, but some NASA-hosted material is third-party copyrighted. Check each asset’s credit and rights notes before reuse. NASA should not be presented as endorsing this independent project. <a href="https://www.nasa.gov/nasa-brand-center/images-and-media/" target="_blank" rel="noopener">Read NASA media usage guidelines ↗</a></div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-head"><div><div class="section-kicker">About the project</div><h2>Preserving the echoes</h2><p class="section-intro">Echoes of Exploration is an independent educational archive by Team Evenstar. It celebrates the engineering, science and curiosity behind humanity’s robotic journeys into space.</p></div></div>
+      <div class="feature"><h3>Project note</h3><p>Mission summaries are written for general audiences and linked to primary NASA sources. Some mission records group related hardware or missions for clarity; individual launch, landing and end dates are shown separately where available. NASA images are fetched from NASA’s public image library when the browser can reach its API. If an image cannot load, the mission card remains readable and its NASA source link is still available.</p></div>
+    </section>
+  </main>
+
+  <footer><div class="footer-inner"><div><a class="brand" href="#home"><span class="brand-mark">✦</span><span>EVENSTAR / ECHOES</span></a><p>Echoes of Exploration — an interactive digital archive of humanity’s robotic journey into space.<br>Independent educational project. Not affiliated with or endorsed by NASA.</p><p>© <span id="year"></span> Team Evenstar.</p></div><div class="footer-links"><a href="#collections">Collections</a><a href="#archive">Mission archive</a><a href="#timeline">Timeline</a><a href="#sources">NASA sources</a><a href="https://github.com/azreenrili/echoes-of-exploration" target="_blank" rel="noopener">GitHub repository ↗</a></div></div></footer>
+
+  <div class="modal" id="missionModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-panel"><div class="modal-top"><h2 id="modalTitle">Mission details</h2><button class="close" id="closeModal" aria-label="Close details">✕</button></div><div class="modal-content" id="modalContent"></div></div>
   </div>
 
-  <div class="stats">
-    <div class="stat"><strong>17.5 mi</strong><span>Apollo 15 rover traverse</span></div>
-    <div class="stat"><strong>45 km</strong><span>Opportunity's total distance</span></div>
-    <div class="stat"><strong>72</strong><span>Ingenuity's completed flights</span></div>
-  </div>
-</section>
+  <script>
+    const missions = [
+      {id:"apollo-lm",name:"Apollo Lunar Modules — descent stages",destination:"Moon",type:"Lander",period:"1969–1972",launch:"Apollo missions: 1969–1972",arrival:"Six Apollo crews landed on the Moon",end:"Descent stages remained at their landing sites",status:"Hardware left on the Moon",summary:"The Apollo Lunar Module had two stages. The ascent stage carried astronauts back to lunar orbit; the descent stage served as the landing platform and was left behind at the landing site. Several Apollo descent stages remain on the Moon.",discovery:"Enabled crewed lunar exploration and provided the platform for surface experiments and sample collection.",location:"Apollo landing sites on the lunar surface",source:"https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo.html",imageQuery:"Apollo lunar module descent stage on Moon NASA"},
+      {id:"lrv",name:"Lunar Roving Vehicles",destination:"Moon",type:"Rover",period:"1971–1972",launch:"Apollo 15, 16 and 17 missions",arrival:"Used on the Moon in 1971 and 1972",end:"Three rovers left at their lunar sites",status:"Hardware left on the Moon",summary:"The battery-powered Lunar Roving Vehicles extended astronauts’ range during Apollo 15, Apollo 16 and Apollo 17. The three vehicles were left on the Moon when their crews departed.",discovery:"Allowed crews to travel farther from the lunar modules, examine more geological sites and carry more samples.",location:"Apollo 15, 16 and 17 landing regions",source:"https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1971-063C",imageQuery:"NASA Apollo lunar roving vehicle astronaut moon"},
+      {id:"alsep",name:"ALSEP scientific packages",destination:"Moon",type:"Instrument",period:"1969–1977",launch:"Deployed during Apollo 12, 14, 15, 16 and 17",arrival:"Installed on the lunar surface, 1969–1972",end:"Stations switched off September 30, 1977",status:"Experiments ended; hardware remains",summary:"The Apollo Lunar Surface Experiments Packages were suites of instruments deployed by astronauts to study the lunar environment, including seismic activity, heat flow, magnetic fields and solar-wind particles.",discovery:"Returned long-running measurements that helped scientists investigate the Moon’s interior and environment after the astronauts had returned to Earth.",location:"Five Apollo landing sites on the Moon",source:"https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo.html",imageQuery:"NASA Apollo ALSEP lunar surface experiment package"},
+      {id:"surveyor",name:"Surveyor landers",destination:"Moon",type:"Lander",period:"1966–1968",launch:"Surveyor programme: 1966–1968",arrival:"First successful soft landing: Surveyor 1, June 2, 1966",end:"Surveyor missions concluded in 1968",status:"Historic landers on the Moon",summary:"NASA’s Surveyor robotic landers tested the ability to make controlled soft landings on the Moon and returned images and measurements of the lunar surface. Surveyor 3 was later visited by Apollo 12 astronauts.",discovery:"Provided engineering and surface information that helped prepare for Apollo crewed landings.",location:"Multiple lunar landing sites; Surveyor 3 is at Oceanus Procellarum",source:"https://science.nasa.gov/mission/surveyor-3/",imageQuery:"NASA Surveyor 3 lunar lander Apollo 12"},
+      {id:"sojourner",name:"Sojourner rover",destination:"Mars",type:"Rover",period:"1997",launch:"December 4, 1996",arrival:"Mars landing: July 4, 1997",end:"Last contact: September 27, 1997",status:"Mission ended",summary:"Sojourner was the small rover delivered by the Mars Pathfinder lander. It became the first wheeled robotic rover to operate on Mars, examining rocks and soil near the landing site.",discovery:"Demonstrated a practical way to explore another planet with a mobile robotic vehicle and returned measurements of Martian rocks and soil.",location:"Ares Vallis region, Mars; at the Pathfinder landing site",source:"https://science.nasa.gov/mission/mars-pathfinder/",imageQuery:"NASA Sojourner rover Mars Pathfinder"},
+      {id:"spirit",name:"Spirit rover",destination:"Mars",type:"Rover",period:"2004–2011",launch:"June 10, 2003",arrival:"Mars landing: January 4, 2004",end:"NASA ended contact attempts: May 25, 2011",status:"Mission ended",summary:"Spirit was one of NASA’s twin Mars Exploration Rovers. It explored Gusev Crater, finding geological evidence that water had altered rocks on ancient Mars. It became stuck in soft soil and stopped communicating in 2010.",discovery:"Found strong evidence of past water activity and explored Martian geology for more than six years.",location:"Troy area, western side of Home Plate, Gusev Crater, Mars",source:"https://science.nasa.gov/mission/mer-spirit/",imageQuery:"NASA Mars Exploration Rover Spirit on Mars"},
+      {id:"opportunity",name:"Opportunity rover",destination:"Mars",type:"Rover",period:"2004–2019",launch:"July 7, 2003",arrival:"Mars landing: January 24, 2004",end:"Last communication: June 10, 2018; mission ended February 13, 2019",status:"Mission ended",summary:"Opportunity explored Meridiani Planum and travelled more than 45 kilometres. A planet-encircling dust storm obscured the Sun and prevented the solar-powered rover from recharging.",discovery:"Found compelling evidence that ancient Mars had environments where liquid water was present and helped establish the planet’s watery past.",location:"Perseverance Valley, Endeavour Crater, Mars",source:"https://science.nasa.gov/mission/mer-opportunity/",imageQuery:"NASA Opportunity rover Mars panorama"},
+      {id:"viking1",name:"Viking 1 lander",destination:"Mars",type:"Lander",period:"1976–1982",launch:"August 20, 1975",arrival:"Mars landing: July 20, 1976",end:"Lander mission ended November 13, 1982",status:"Mission ended",summary:"Viking 1 was the first U.S. spacecraft to land successfully and operate on Mars. Its lander photographed the surface, analysed soil and conducted experiments designed to look for signs of life.",discovery:"Returned the first images from the Martian surface and greatly expanded knowledge of its soil, atmosphere and geology.",location:"Chryse Planitia, Mars",source:"https://science.nasa.gov/mission/viking/",imageQuery:"NASA Viking 1 lander first panorama Mars"},
+      {id:"viking2",name:"Viking 2 lander",destination:"Mars",type:"Lander",period:"1976–1980",launch:"September 9, 1975",arrival:"Mars landing: September 3, 1976",end:"Lander mission ended April 11, 1980",status:"Mission ended",summary:"Viking 2 was the second successful U.S. Mars lander. It operated in Utopia Planitia, returning surface images and carrying out experiments on Martian soil and atmosphere.",discovery:"Added a second landing-site perspective to the Viking programme’s study of the Martian surface and the search for possible biological activity.",location:"Utopia Planitia, Mars",source:"https://science.nasa.gov/mission/viking/",imageQuery:"NASA Viking 2 lander Mars surface"},
+      {id:"phoenix",name:"Phoenix lander",destination:"Mars",type:"Lander",period:"2008",launch:"August 4, 2007",arrival:"Mars landing: May 25, 2008",end:"Last communication: November 2, 2008",status:"Mission ended",summary:"Phoenix landed in the Martian arctic and used a robotic arm to dig into the soil. It confirmed water ice beneath the surface and studied the local environment.",discovery:"Confirmed water ice in the Martian subsurface at its landing site and analysed soil chemistry in the polar region.",location:"Green Valley, Vastitas Borealis, Mars",source:"https://science.nasa.gov/mission/phoenix/",imageQuery:"NASA Phoenix Mars lander robotic arm trench"},
+      {id:"insight",name:"InSight lander",destination:"Mars",type:"Lander",period:"2018–2022",launch:"May 5, 2018",arrival:"Mars landing: November 26, 2018",end:"Mission ended December 21, 2022",status:"Mission ended",summary:"The Interior Exploration using Seismic Investigations, Geodesy and Heat Transport mission studied the deep interior of Mars. Its seismometer detected marsquakes and impacts, revealing details about the planet’s crust, mantle and core.",discovery:"Made the first detailed measurements of Mars’ seismic activity and improved understanding of the planet’s internal structure.",location:"Elysium Planitia, Mars",source:"https://science.nasa.gov/mission/insight/",imageQuery:"NASA InSight lander Mars surface solar panels"},
+      {id:"ingenuity",name:"Ingenuity Mars helicopter",destination:"Mars",type:"Aircraft",period:"2021–2024",launch:"July 30, 2020 (with Perseverance)",arrival:"Arrived at Mars: February 18, 2021",end:"Flight operations ended January 25, 2024",status:"Stationary; flight mission ended",summary:"Ingenuity was a technology demonstration helicopter carried to Mars by Perseverance. It completed 72 flights, far exceeding its original five-flight demonstration plan. Rotor damage during its final flight ended its ability to fly.",discovery:"Proved that powered, controlled flight is possible in the thin Martian atmosphere and demonstrated aerial scouting for future exploration.",location:"Jezero Crater, Mars",source:"https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/",imageQuery:"NASA Ingenuity helicopter Mars on ground Perseverance"},
+      {id:"dawn",name:"Dawn spacecraft",destination:"Asteroid",type:"Spacecraft",period:"2007–2018",launch:"September 27, 2007",arrival:"Vesta orbit: July 2011; Ceres orbit: March 2015",end:"Propellant depleted October 31, 2018",status:"Unpowered orbit around Ceres",summary:"Dawn used ion propulsion to become the first spacecraft to orbit two extraterrestrial destinations: protoplanet Vesta and dwarf planet Ceres. Its mission ended when it ran out of hydrazine propellant.",discovery:"Revealed that Vesta and Ceres are distinct surviving protoplanets, offering clues to the earliest stages of planetary formation.",location:"Remains in orbit around dwarf planet Ceres",source:"https://science.nasa.gov/mission/dawn/mission-status/",imageQuery:"NASA Dawn spacecraft Ceres Vesta artist concept"},
+      {id:"near",name:"NEAR Shoemaker",destination:"Asteroid",type:"Spacecraft",period:"1996–2001",launch:"February 17, 1996",arrival:"Eros orbit insertion: February 14, 2000",end:"Landed on Eros: February 12, 2001; mission concluded February 28, 2001",status:"Resting on asteroid Eros",summary:"The Near Earth Asteroid Rendezvous spacecraft, later named NEAR Shoemaker, became the first spacecraft to orbit an asteroid. At the end of its mission it made a controlled descent and survived a landing on Eros.",discovery:"Returned detailed measurements of asteroid 433 Eros, including its shape, composition, gravity and surface features.",location:"Surface of asteroid 433 Eros",source:"https://science.nasa.gov/mission/near-shoemaker/",imageQuery:"NASA NEAR Shoemaker spacecraft asteroid Eros surface"},
+      {id:"pioneer10",name:"Pioneer 10",destination:"Deep Space",type:"Spacecraft",period:"1972–2003",launch:"March 2, 1972",arrival:"Jupiter flyby: December 3, 1973",end:"Last signal received January 23, 2003",status:"Silent; outbound trajectory",summary:"Pioneer 10 was the first spacecraft to travel through the asteroid belt and make direct observations of Jupiter. Its final weak signal was received in 2003 as its power source declined.",discovery:"Returned the first close-up observations of Jupiter and paved the way for later outer Solar System missions.",location:"On an escape trajectory from the Solar System; no longer communicating",source:"https://science.nasa.gov/mission/pioneer-10/",imageQuery:"NASA Pioneer 10 spacecraft deep space illustration"},
+      {id:"pioneer11",name:"Pioneer 11",destination:"Deep Space",type:"Spacecraft",period:"1973–1995",launch:"April 5, 1973",arrival:"Jupiter flyby: December 1974; Saturn flyby: September 1979",end:"Last contact: September 30, 1995",status:"Silent; outbound trajectory",summary:"Pioneer 11 followed Pioneer 10 with historic flybys of Jupiter and Saturn. It provided the first close observations of Saturn and its rings from a spacecraft.",discovery:"Expanded knowledge of the outer planets and helped plan the routes and observations of later missions.",location:"On an escape trajectory from the Solar System; no longer communicating",source:"https://science.nasa.gov/mission/pioneer-11/",imageQuery:"NASA Pioneer 11 spacecraft Saturn artist illustration"},
+      {id:"kepler",name:"Kepler Space Telescope",destination:"Deep Space",type:"Space telescope",period:"2009–2018",launch:"March 7, 2009",arrival:"Earth-trailing heliocentric orbit",end:"Science operations ended October 30, 2018",status:"Retired; orbiting the Sun",summary:"Kepler was designed to survey a portion of the Milky Way and measure tiny dips in starlight caused by planets passing in front of their stars. It revolutionised the study of exoplanets.",discovery:"Confirmed thousands of exoplanets and showed that planets are common throughout our galaxy.",location:"Earth-trailing orbit around the Sun",source:"https://science.nasa.gov/mission/kepler/",imageQuery:"NASA Kepler space telescope spacecraft artist concept"}
+    ];
 
-<section class="timeline" id="timeline">
-  <div class="section-label">03 / The journey</div>
-  <h2 class="section-title">A timeline of discovery.</h2>
-  <p class="section-intro">Milestones that changed the history of robotic and human exploration.</p>
+    const grid=document.getElementById("missionGrid");
+    const search=document.getElementById("searchInput");
+    const destination=document.getElementById("destinationFilter");
+    const type=document.getElementById("typeFilter");
+    const count=document.getElementById("resultCount");
+    const modal=document.getElementById("missionModal");
+    const modalContent=document.getElementById("modalContent");
+    const modalTitle=document.getElementById("modalTitle");
+    const imageCache=new Map();
 
-  <div class="timeline-list">
-    <div class="event">
-      <time>JULY 1971</time>
-      <h3>The Moon gets its first rover</h3>
-      <p>Apollo 15 makes the Lunar Roving Vehicle's first journey across the lunar surface.</p>
-    </div>
-    <div class="event">
-      <time>JANUARY 2004</time>
-      <h3>Opportunity arrives on Mars</h3>
-      <p>NASA's Mars Exploration Rover begins a mission designed to last just 90 sols.</p>
-    </div>
-    <div class="event">
-      <time>APRIL 2021</time>
-      <h3>Ingenuity takes flight</h3>
-      <p>Humanity achieves its first powered, controlled flight on another planet.</p>
-    </div>
-    <div class="event">
-      <time>JUNE 2018</time>
-      <h3>Opportunity's last communication</h3>
-      <p>A planet-wide dust storm interrupts communication with the long-running rover.</p>
-    </div>
-    <div class="event">
-      <time>JANUARY 2024</time>
-      <h3>Ingenuity completes its mission</h3>
-      <p>After 72 flights, the pioneering Mars helicopter's mission comes to an end.</p>
-    </div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="section-label">04 / About the project</div>
-  <h2 class="section-title">Remembering the machines<br>that took us further.</h2>
-  <p class="section-intro">
-    Created by Team Evenstar, Echoes of Exploration celebrates
-    the achievements of space exploration through storytelling,
-    educational content and an accessible digital archive.
-  </p>
-
-  <div class="about-grid">
-    <div class="about-box">
-      <h3>Our vision</h3>
-      <p>
-        To inspire curiosity about space exploration and make the
-        achievements of robotic explorers accessible to everyone.
-        We believe a mission's legacy should continue long after
-        its final transmission.
-      </p>
-      <br>
-      <p><strong>Project:</strong> Echoes of Exploration</p>
-      <p><strong>Team:</strong> Evenstar</p>
-      <p><strong>Creators:</strong> Azreen & Aiza</p>
-    </div>
-
-    <div class="about-box sources">
-      <h3>NASA references & resources</h3>
-      <p>Explore the original mission information and image archives:</p>
-      <a href="https://www.nasa.gov/mission/apollo-15/" target="_blank" rel="noopener">NASA — Apollo 15 Mission ↗</a>
-      <a href="https://science.nasa.gov/mission/mars-exploration-rovers/" target="_blank" rel="noopener">NASA — Mars Exploration Rovers ↗</a>
-      <a href="https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/" target="_blank" rel="noopener">NASA — Ingenuity Mars Helicopter ↗</a>
-      <a href="https://www.nasa.gov/news-release/after-three-years-on-mars-nasas-ingenuity-helicopter-mission-ends/" target="_blank" rel="noopener">NASA — Ingenuity Mission Conclusion ↗</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div><strong>EVENSTAR</strong> / ECHOES OF EXPLORATION</div>
-  <div>Educational project • NASA references credited • 2026</div>
-</footer>
-
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal-content">
-    <button class="close" onclick="closeModal()" aria-label="Close dialog">×</button>
-    <div class="section-label">EXPLORER FILE / MISSION ARCHIVE</div>
-    <h2 id="modalTitle"></h2>
-    <p id="modalText"></p>
-    <br>
-    <a id="modalSource" class="btn btn-primary" href="#" target="_blank" rel="noopener">NASA MISSION SOURCE ↗</a>
-  </div>
-</div>
-
-<script>
-const menuBtn = document.getElementById('menuBtn');
-const navLinks = document.getElementById('navLinks');
-
-menuBtn.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-});
-
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => navLinks.classList.remove('open'));
-});
-
-document.querySelectorAll('.filter').forEach(button => {
-  button.addEventListener('click', () => {
-    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
-    button.classList.add('active');
-
-    const filter = button.dataset.filter;
-
-    document.querySelectorAll('.card').forEach(card => {
-      card.style.display =
-        filter === 'all' || card.dataset.world === filter ? 'block' : 'none';
-    });
-  });
-});
-
-const missions = {
-  apollo: {
-    title: 'Apollo Lunar Roving Vehicle',
-    text: 'The Lunar Roving Vehicle made its debut during Apollo 15 on July 31, 1971. This battery-powered electric vehicle expanded the astronauts’ ability to travel, investigate geological features and collect lunar samples. During Apollo 15, the crew travelled approximately 17.5 miles with the rover. It became an important part of the final three Apollo lunar landing missions.',
-    source: 'https://www.nasa.gov/image-article/lunar-roving-vehicle-apollo-15-mission/'
-  },
-  opportunity: {
-    title: 'Opportunity Rover',
-    text: 'Opportunity landed on Mars in January 2004 for a planned mission of 90 Martian days. It continued operating for more than 14 years, travelling approximately 45 kilometres and finding evidence that liquid water had once altered rocks on Mars. NASA declared the mission complete in February 2019 after attempts to restore contact following a major dust storm.',
-    source: 'https://science.nasa.gov/mission/mars-exploration-rovers/'
-  },
-  ingenuity: {
-    title: 'Ingenuity Mars Helicopter',
-    text: 'Ingenuity began as a technology demonstration and made its historic first powered, controlled flight on Mars on April 19, 2021. Designed for up to five test flights, it ultimately completed 72 flights. Its mission ended in January 2024 after rotor blade damage prevented further flight. It demonstrated the potential of aerial exploration on other worlds.',
-    source: 'https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/'
-  }
-};
-
-function openModal(id) {
-  const mission = missions[id];
-  document.getElementById('modalTitle').textContent = mission.title;
-  document.getElementById('modalText').textContent = mission.text;
-  document.getElementById('modalSource').href = mission.source;
-  document.getElementById('modal').classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  document.getElementById('modal').classList.remove('show');
-  document.body.style.overflow = '';
-}
-
-document.getElementById('modal').addEventListener('click', event => {
-  if (event.target.id === 'modal') closeModal();
-});
-
-document.addEventListener('keydown', event => {
-  if (event.key === 'Escape') closeModal();
-});
-</script>
-
+    function escapeHTML(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+    function cardTemplate(m){
+      return `<article class="mission-card">
+        <div class="mission-image" data-image-id="${m.id}" aria-label="NASA image for ${escapeHTML(m.name)}"><span class="image-credit">NASA / image library</span></div>
+        <div class="mission-body"><div class="tagrow"><span class="tag">${escapeHTML(m.destination)}</span><span class="tag">${escapeHTML(m.type)}</span><span class="tag status">${escapeHTML(m.status)}</span></div>
+        <h3>${escapeHTML(m.name)}</h3><p>${escapeHTML(m.summary)}</p>
+        <div class="facts"><div class="fact"><small>Mission era</small><span>${escapeHTML(m.period)}</span></div><div class="fact"><small>Final location</small><span>${escapeHTML(m.location)}</span></div></div>
+        <button class="details-btn" data-open="${m.id}">Explore mission details ↗</button></div></article>`;
+    }
+    function render(){
+      const q=search.value.trim().toLowerCase();
+      const d=destination.value,t=type.value;
+      const filtered=missions.filter(m=>(d==="all"||m.destination===d)&&(t==="all"||m.type===t)&&(!q||[m.name,m.destination,m.type,m.summary,m.discovery,m.location,m.status].join(" ").toLowerCase().includes(q)));
+      grid.innerHTML=filtered.map(cardTemplate).join("");
+      count.textContent=`Showing ${filtered.length} of ${missions.length} mission records`;
+      filtered.forEach(loadMissionImage);
+    }
+    async function loadMissionImage(m){
+      const host=document.querySelector(`[data-image-id="${m.id}"]`);
+      if(!host||host.querySelector("img")||imageCache.has(m.id))return;
+      imageCache.set(m.id,true);
+      try{
+        const url=`https://images-api.nasa.gov/search?q=${encodeURIComponent(m.imageQuery)}&media_type=image&page_size=8`;
+        const response=await fetch(url);
+        if(!response.ok)throw new Error("NASA image search unavailable");
+        const data=await response.json();
+        const items=(data.collection&&data.collection.items)||[];
+        const chosen=items.find(item=>item.links&&item.links.some(link=>link.render==="image"&&link.href))||items.find(item=>item.links&&item.links[0]);
+        const image=chosen&&chosen.links&&chosen.links.find(link=>link.render==="image"&&link.href);
+        if(image&&host.isConnected){
+          const img=document.createElement("img");img.src=image.href;img.alt=`NASA image related to ${m.name}`;img.loading="lazy";img.referrerPolicy="no-referrer";
+          img.onerror=()=>{img.remove();};host.prepend(img);
+        }
+      }catch(error){/* Keep the designed fallback when NASA's image API is unavailable. */}
+    }
+    function openDetails(id){
+      const m=missions.find(item=>item.id===id);if(!m)return;
+      modalTitle.textContent=m.name;
+      modalContent.innerHTML=`<div class="tagrow"><span class="tag">${escapeHTML(m.destination)}</span><span class="tag">${escapeHTML(m.type)}</span><span class="tag status">${escapeHTML(m.status)}</span></div>
+        <p>${escapeHTML(m.summary)}</p><h3>Mission at a glance</h3>
+        <div class="modal-meta"><div><small>Mission era</small><strong>${escapeHTML(m.period)}</strong></div><div><small>Launch</small><strong>${escapeHTML(m.launch)}</strong></div><div><small>Arrival / milestone</small><strong>${escapeHTML(m.arrival)}</strong></div><div><small>Mission end / final event</small><strong>${escapeHTML(m.end)}</strong></div><div><small>Final status</small><strong>${escapeHTML(m.status)}</strong></div><div><small>Final location</small><strong>${escapeHTML(m.location)}</strong></div></div>
+        <h3>Scientific legacy</h3><p>${escapeHTML(m.discovery)}</p>
+        <div class="modal-links"><a href="${escapeHTML(m.source)}" target="_blank" rel="noopener">NASA mission reference ↗</a><a href="https://images.nasa.gov/search?q=${encodeURIComponent(m.imageQuery)}" target="_blank" rel="noopener">NASA image search ↗</a></div>
+        <p class="hero-note">Dates and status are concise archive summaries. Follow the NASA reference for detailed mission records and updates.</p>`;
+      modal.classList.add("open");document.getElementById("closeModal").focus();document.body.style.overflow="hidden";
+    }
+    function closeDetails(){modal.classList.remove("open");document.body.style.overflow="";}
+    search.addEventListener("input",render);destination.addEventListener("change",render);type.addEventListener("change",render);
+    grid.addEventListener("click",e=>{const button=e.target.closest("[data-open]");if(button)openDetails(button.dataset.open);});
+    document.querySelectorAll("[data-filter-link]").forEach(link=>link.addEventListener("click",()=>{destination.value=link.dataset.filterLink;render();}));
+    document.getElementById("closeModal").addEventListener("click",closeDetails);
+    modal.addEventListener("click",e=>{if(e.target===modal)closeDetails();});
+    document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDetails();});
+    document.getElementById("menuBtn").addEventListener("click",()=>{const links=document.getElementById("navLinks");const open=links.classList.toggle("open");document.getElementById("menuBtn").setAttribute("aria-expanded",String(open));});
+    document.querySelectorAll(".navlinks a").forEach(a=>a.addEventListener("click",()=>{document.getElementById("navLinks").classList.remove("open");document.getElementById("menuBtn").setAttribute("aria-expanded","false");}));
+    document.getElementById("year").textContent=new Date().getFullYear();
+    render();
+  </script>
 </body>
 </html>
